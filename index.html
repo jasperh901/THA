@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="THA is a thalamocortical-inspired affective computing adapter for frozen large language models.">
+  <meta property="og:title" content="THA: Thalamus Adapter">
+  <meta property="og:description" content="A lightweight, biologically inspired adapter for multimodal affective computing with frozen LLMs.">
+  <meta name="theme-color" content="#0e6f68">
+  <title>THA | Thalamocortical-Inspired Affective Computing</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header" id="top">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="THA home">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>THA</span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-menu">&#9776;</button>
+      <div class="site-menu" id="site-menu">
+        <a href="#motivation">Motivation</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#code">Code</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="hero" aria-labelledby="project-title">
+      <div class="shell hero-inner">
+        <p class="eyebrow">Bionic Affective Computing</p>
+        <h1 id="project-title">THA</h1>
+        <p class="hero-summary">THA treats multimodal affect as a communication problem: select task-relevant sensory evidence, regulate it by reliability, and repeatedly relay a compact affective state through an otherwise frozen language model.</p>
+        <div class="hero-actions" aria-label="Project resources">
+          <a class="button button-primary" href="https://github.com/jasperh901/THA">View code</a>
+          <a class="button button-secondary" href="#results">Benchmark results</a>
+        </div>
+        <dl class="hero-facts">
+          <div><dt>1.18-2.28M</dt><dd>trainable core parameters</dd></div>
+          <div><dt>&lt; 0.1%</dt><dd>of each backbone</dd></div>
+          <div><dt>3</dt><dd>frozen LLM families</dd></div>
+          <div><dt>3</dt><dd>affective benchmarks</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section motivation" id="motivation" aria-labelledby="motivation-title">
+      <div class="shell motivation-layout">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Research motivation</p>
+          <h2 id="motivation-title">Biological organization as a communication prior</h2>
+          <p>Bionic Affective Computing translates the functional organization of biological systems into explicit communication and modulation principles for affective LLMs. THA instantiates this view as a context-sensitive, reliability-aware relay around a frozen semantic backbone.</p>
+        </div>
+        <figure class="paper-figure motivation-figure">
+          <a href="assets/motivation.png" aria-label="Open the full-resolution motivation figure from the paper">
+            <img src="assets/motivation.png" alt="Paper motivation figure contrasting full LLM adaptation with a compact biologically inspired affective adapter." decoding="async">
+          </a>
+          <figcaption>Motivation for BAC and its THA instantiation. A biologically inspired relay organizes multimodal affective evidence around a frozen LLM through context-sensitive, low-parameter communication.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section method-section" id="method" aria-labelledby="method-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Method</p>
+          <h2 id="method-title">From biological communication principles to five bounded operations</h2>
+          <p>THA selects temporal evidence, compresses it into a fixed token budget, reconciles complementary expert views, anchors the state in the LLM embedding geometry, and refreshes only that state at selected Transformer depths.</p>
+        </div>
+        <figure class="paper-figure architecture-figure">
+          <a href="assets/architecture.png" aria-label="Open the full-resolution THA architecture figure">
+            <img src="assets/architecture.png" alt="THA architecture with temporal evidence encoding, query resampling, expert gating, semantic projection, and layerwise fusion around a frozen LLM." decoding="async">
+          </a>
+          <figcaption>Overview of THA. Text context guides separate temporal evidence encoders for audio and vision. The resulting compact affective states enter a frozen LLM and are refreshed at selected Transformer layers.</figcaption>
+        </figure>
+        <ol class="module-strip" aria-label="THA main modules">
+          <li><b>01</b><strong>Temporal Evidence Encoder</strong><span>Text-guided selection and modality reliability.</span></li>
+          <li><b>02</b><strong>Affective Query Resampler</strong><span>Two variable streams become eight bounded states.</span></li>
+          <li><b>03</b><strong>Expert Gate</strong><span>Local, memory-grounded, and global views are reconciled.</span></li>
+          <li><b>04</b><strong>Semantic Projector</strong><span>Affective states align to frozen verbalizer geometry.</span></li>
+          <li><b>05</b><strong>Layerwise Fusion</strong><span>Selected depths revisit compact sensory memory.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results" aria-labelledby="results-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Results</p>
+          <h2 id="results-title">One compact interface across languages and affective tasks</h2>
+          <p>Headline test performance below uses the ChatGLM3-6B backbone. Higher is better for accuracy, F1, and correlation; lower is better for MAE.</p>
+        </div>
+        <div class="benchmark-grid">
+          <article class="benchmark">
+            <div><span>English / MSA</span><h3>MOSEI</h3></div>
+            <strong>87.31<small>% Acc-2</small></strong>
+            <dl><div><dt>F1</dt><dd>87.13</dd></div><div><dt>MAE</dt><dd>0.500</dd></div><div><dt>Corr</dt><dd>0.793</dd></div></dl>
+          </article>
+          <article class="benchmark">
+            <div><span>Chinese / MSA</span><h3>SIMS-V2</h3></div>
+            <strong>83.75<small>% Acc-2</small></strong>
+            <dl><div><dt>F1</dt><dd>83.77</dd></div><div><dt>MAE</dt><dd>0.274</dd></div><div><dt>Corr</dt><dd>0.727</dd></div></dl>
+          </article>
+          <article class="benchmark">
+            <div><span>Chinese / ERC</span><h3>CHERMA</h3></div>
+            <strong>74.79<small>% Acc</small></strong>
+            <dl><div><dt>WF1</dt><dd>74.77</dd></div><div><dt>Classes</dt><dd>7</dd></div><div><dt>Task</dt><dd>ERC</dd></div></dl>
+          </article>
+        </div>
+
+        <div class="table-wrap" tabindex="0" aria-label="THA results by backbone">
+          <table>
+            <caption>Performance across all frozen backbones</caption>
+            <thead><tr><th>Backbone</th><th>MOSEI Acc-2 / MAE</th><th>SIMS-V2 Acc-2 / MAE</th><th>CHERMA Acc / WF1</th></tr></thead>
+            <tbody>
+              <tr><th>Qwen-1.8B</th><td>85.15 / 0.517</td><td>79.30 / 0.322</td><td>73.19 / 73.56</td></tr>
+              <tr><th>LLaMA2-7B</th><td>85.94 / 0.535</td><td>79.40 / 0.329</td><td>73.19 / 73.01</td></tr>
+              <tr class="highlight-row"><th>ChatGLM3-6B</th><td>87.31 / 0.500</td><td>83.75 / 0.274</td><td>74.79 / 74.77</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="efficiency-band">
+          <div><p class="eyebrow">Parameter efficiency</p><h3>Trainable parameters in the THA core</h3></div>
+          <div class="parameter-range"><strong>1.18M</strong><span>to</span><strong>2.28M</strong><small>core trainable parameters</small></div>
+          <p>The core size depends on the input dimensions and the backbone embedding width. <a href="https://github.com/jasperh901/THA/blob/main/docs/RESULTS.md">See all metrics and parameter counts</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section evidence-section" id="evidence" aria-labelledby="evidence-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Behavioral evidence</p>
+          <h2 id="evidence-title">The same relay supports regression and recognition</h2>
+          <p>Qualitative traces expose the selected modalities, learned reliability, shared routing path, and final prediction for one example from each benchmark.</p>
+        </div>
+        <figure class="paper-figure qualitative-figure">
+          <a href="assets/qualitative.png" aria-label="Open full-resolution qualitative examples">
+            <img src="assets/qualitative.png" alt="Qualitative THA predictions on MOSEI, SIMS-V2, and CHERMA." decoding="async">
+          </a>
+          <figcaption>Qualitative inference examples on MOSEI, SIMS-V2, and CHERMA in reading order. Each trace presents the multimodal input, sample-level reliability, shared routing path, and task-specific prediction.</figcaption>
+        </figure>
+        <div class="mechanism-stack">
+          <figure class="paper-figure mechanism-figure">
+            <div class="module-panels">
+              <a href="assets/module-necessity-mae.png" aria-label="Open the paper MAE module-necessity panel">
+                <img src="assets/module-necessity-mae.png" alt="Mean MAE increase after removing each THA module, with bootstrap confidence intervals." decoding="async">
+              </a>
+              <a href="assets/module-necessity-corr.png" aria-label="Open the paper correlation module-necessity panel">
+                <img src="assets/module-necessity-corr.png" alt="Correlation decrease after removing each THA module." decoding="async">
+              </a>
+            </div>
+            <figcaption>System-level module necessity under a shared training configuration. Positive changes indicate that the complete model is preferred.</figcaption>
+          </figure>
+          <figure class="paper-figure mechanism-figure">
+            <div class="query-panels">
+              <a class="query-reliability" href="assets/query-resampler-reliability.png" aria-label="Open the paper reliability allocation panel">
+                <img src="assets/query-resampler-reliability.png" alt="Audio-memory allocation as relative modality reliability changes." decoding="async">
+              </a>
+              <a href="assets/query-resampler-rank.png" aria-label="Open the paper effective-rank panel">
+                <img src="assets/query-resampler-rank.png" alt="Effective-token-rank distributions for the full model and fixed resampling." decoding="async">
+              </a>
+              <a href="assets/query-resampler-similarity.png" aria-label="Open the paper inter-query similarity panel">
+                <img src="assets/query-resampler-similarity.png" alt="Inter-query cosine-similarity distributions for the full model and fixed resampling." decoding="async">
+              </a>
+            </div>
+            <figcaption>Reliability-aware query resampling: modality allocation follows relative reliability while the bounded token bank forms a compact consensus representation.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section code-section" id="code" aria-labelledby="code-title">
+      <div class="shell code-layout">
+        <div class="code-copy">
+          <p class="eyebrow">Reference implementation</p>
+          <h2 id="code-title">A clean adapter-only codebase</h2>
+          <p>The repository loads Qwen, ChatGLM3, or LLaMA2 from their original Hugging Face implementations. Runtime hooks inject THA at configured layers; checkpoints contain only THA state and run metadata.</p>
+          <ul class="check-list">
+            <li>One model path for all three backbones</li>
+            <li>Unified loaders for all three datasets</li>
+            <li>CPU tests for modules, hooks, data, metrics, and checkpoints</li>
+          </ul>
+        </div>
+        <div class="terminal" aria-label="THA quick start commands">
+          <div class="terminal-bar"><span></span><span></span><span></span><b>quick start</b></div>
+          <pre><code><span class="comment"># Minimal environment</span>
+conda env create -f environment.yml
+conda activate tha
+pip install -e .
+
+<span class="comment"># Validate data without loading an LLM</span>
+tha inspect-data \
+  --backbone chatglm3 \
+  --dataset mosei \
+  --data-root ./data
+
+<span class="comment"># Train THA; the base model remains frozen</span>
+tha train \
+  --backbone chatglm3 \
+  --dataset mosei \
+  --data-root ./data \
+  --output-dir outputs/mosei_chatglm3</code></pre>
+        </div>
+      </div>
+
+      <div class="shell resource-table">
+        <div><span>Backbones</span><p><a href="https://huggingface.co/Qwen/Qwen-1_8B">Qwen-1.8B</a> <a href="https://huggingface.co/THUDM/chatglm3-6b-base">ChatGLM3-6B</a> <a href="https://huggingface.co/meta-llama/Llama-2-7b-hf">LLaMA2-7B</a></p></div>
+        <div><span>Sentiment data</span><p><a href="https://huggingface.co/datasets/AZYoung/MOSEI_processed">MOSEI</a> <a href="https://huggingface.co/datasets/AZYoung/SIMSV2_processed">SIMS-V2</a></p></div>
+        <div><span>Emotion data</span><p><a href="https://huggingface.co/datasets/AZYoung/CHERMA0723_processed">CHERMA</a></p></div>
+        <div><span>Documentation</span><p><a href="https://github.com/jasperh901/THA#readme">Reproduction guide</a> <a href="https://github.com/jasperh901/THA/blob/main/docs/DATA.md">Data processing</a> <a href="https://github.com/jasperh901/THA/blob/main/docs/IMPLEMENTATION.md">Implementation notes</a></p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div><strong>THA</strong><span>Thalamus Adapter for affective LLMs</span></div>
+      <p>Code released for research reproducibility. <span id="year">2026</span>.</p>
+    </div>
+  </footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>

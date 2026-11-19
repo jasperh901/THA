@@ -1,0 +1,12 @@
+hidden_dim: 128
+rank: 16
+evidence_tokens: 6
+affective_tokens: 8
+attention_heads: 4
+dropout: 0.1
+expert_bottleneck: 64
+expert_temperature: 1.0
+expert_residual_gate_bias: -3.0
+use_reliability_layer_gate: true
+wrapper_before: "Question:\n<Multimodal>"
+wrapper_after: "</Multimodal>\n"

@@ -1,0 +1,100 @@
+mosei:
+  display_name: CMU-MOSEI
+  task: regression
+  format: array
+  relative_path: MOSEI/Processed/unaligned_50.pkl
+  max_text_length: 50
+  audio_dim: 74
+  vision_dim: 35
+  score_range: [-3.0, 3.0]
+  prompt: "Please predict the sentiment intensity of the above multimodal content in the range [-3.0, 3.0]. Only output one numeric score. Response: The sentiment is"
+  primary_metric: MAE
+  metric_mode: min
+  roles: [magnitude, magnitude, magnitude, polarity, polarity, polarity, polarity, polarity]
+  anchors: [positive, negative, neutral, sentiment, happy, sad, angry, surprise, fear, disgust, very, slightly, not, "-3.0", "-2.0", "-1.0", "0.0", "+1.0", "+2.0", "+3.0"]
+  profiles:
+    qwen18:
+      seed: 7777
+      dataset:
+        prompt: "Please predict the sentiment intensity of the above multimodal content in the range [-3.0, 3.0]. Return only one number. Answer:"
+      adapter:
+        expert_residual_gate_bias: 0.0
+      training: {batch_size: 4, learning_rate: 5.0e-5, epochs: 30, early_stop: 10, max_new_tokens: 4}
+    chatglm3:
+      seed: 3333
+      dataset:
+        prompt: "Please predict the sentiment intensity of the above multimodal content in the range [-3.0, 3.0]. response: The sentiment is"
+      adapter:
+        use_reliability_layer_gate: false
+      training: {batch_size: 1, learning_rate: 5.0e-5, epochs: 30, early_stop: 10, max_new_tokens: 4}
+    llama2:
+      seed: 2022
+      dataset:
+        prompt: "Return exactly one signed decimal sentiment score in [-3.0, 3.0]. Score:"
+      adapter:
+        expert_residual_gate_bias: -3.2
+        use_reliability_layer_gate: false
+      training: {batch_size: 4, learning_rate: 3.0e-5, epochs: 24, early_stop: 10, max_new_tokens: 5}
+
+simsv2:
+  display_name: SIMS-V2
+  task: regression
+  format: array
+  relative_path: SIMS_V2/ch-simsv2s.pkl
+  max_text_length: 50
+  audio_dim: 25
+  vision_dim: 177
+  score_range: [-1.0, 1.0]
+  prompt: "请对上述多模态内容的情感强度进行预测，范围在[-1.0, 1.0]之间。只输出一个数字。响应: 情感为"
+  primary_metric: MAE
+  metric_mode: min
+  roles: [weak, weak, magnitude, magnitude, polarity, polarity, polarity, polarity]
+  anchors: [积极, 消极, 中性, 高兴, 悲伤, 愤怒, 平静, 很, 稍微, 不, "-1.0", "-0.5", "0.0", "+0.5", "+1.0"]
+  profiles:
+    qwen18:
+      seed: 3333
+      adapter:
+        expert_temperature: 0.85
+        expert_residual_gate_bias: -2.8
+      training: {batch_size: 4, learning_rate: 4.0e-5, epochs: 20, early_stop: 10, max_new_tokens: 4}
+    chatglm3:
+      seed: 2222
+      training: {batch_size: 1, learning_rate: 5.0e-5, epochs: 30, early_stop: 10, max_new_tokens: 4}
+    llama2:
+      seed: 2022
+      adapter:
+        expert_temperature: 0.9
+        use_reliability_layer_gate: false
+      training: {batch_size: 4, learning_rate: 4.0e-5, epochs: 20, early_stop: 10, max_new_tokens: 4}
+
+cherma:
+  display_name: CHERMA
+  task: classification
+  format: records
+  relative_path: CHERMA0723
+  file_prefix: cherma
+  max_text_length: 78
+  audio_dim: 1024
+  vision_dim: 2048
+  prompt: "请选择情绪标签：愤怒、厌恶、恐惧、高兴、平静、悲伤、惊奇。只输出一个标签。情绪:"
+  primary_metric: WF1
+  metric_mode: max
+  labels: [愤怒, 厌恶, 恐惧, 高兴, 平静, 悲伤, 惊奇]
+  roles: [affect, affect, affect, affect, affect, affect, affect, affect]
+  anchors: [愤怒, 厌恶, 恐惧, 高兴, 平静, 悲伤, 惊奇, 情绪]
+  profiles:
+    qwen18:
+      seed: 7777
+      dataset:
+        prompt: "请选择适用于上述多模态内容的情绪标签：<愤怒:0, 厌恶:1, 恐惧:2, 高兴:3, 平静:4, 悲伤:5, 惊奇:6>。请只输出情绪名称。答案:"
+      training: {batch_size: 4, learning_rate: 5.0e-5, epochs: 30, early_stop: 8, max_new_tokens: 4}
+    chatglm3:
+      seed: 3333
+      dataset:
+        prompt: "请选择适用于上述多模态内容的情绪标签：<愤怒:0, 厌恶:1, 恐惧:2, 高兴:3, 平静:4, 悲伤:5, 惊奇:6>。响应: 情绪为"
+      training: {batch_size: 1, learning_rate: 5.0e-5, epochs: 30, early_stop: 8, max_new_tokens: 2}
+    llama2:
+      seed: 5055
+      adapter:
+        use_reliability_layer_gate: false
+      training: {batch_size: 1, learning_rate: 3.5e-5, epochs: 24, early_stop: 8, max_new_tokens: 4}

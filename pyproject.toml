@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tha-affective-adapter"
+version = "0.1.0"
+description = "Reference implementation of THA, a thalamocortical-inspired affective adapter for frozen LLMs."
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+license = { file = "LICENSE" }
+authors = [{ name = "Wenjie Huang", email = "huangwj2025@lzu.edu.cn" }]
+keywords = ["affective computing", "multimodal learning", "large language models"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy==1.26.4",
+  "PyYAML==6.0.1",
+  "scikit-learn==1.3.2",
+  "sentencepiece==0.1.99",
+  "tiktoken==0.5.2",
+  "torch==2.1.2",
+  "tqdm==4.66.1",
+  "transformers==4.36.2",
+  "transformers-stream-generator==0.0.4",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.2.2",
+  "ruff==0.5.5",
+]
+
+[project.scripts]
+tha = "tha.cli:main"
+
+[project.urls]
+Homepage = "https://jasperh901.github.io/THA/"
+Repository = "https://github.com/jasperh901/THA"
+Documentation = "https://github.com/jasperh901/THA#readme"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tha = ["configs/*.yaml"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

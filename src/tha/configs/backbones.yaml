@@ -1,0 +1,26 @@
+qwen18:
+  display_name: Qwen-1.8B
+  model_id: Qwen/Qwen-1_8B
+  trust_remote_code: true
+  hidden_size: 2048
+  layer_path: transformer.h
+  selected_layers: [8, 16, 23]
+  dtype: float16
+
+chatglm3:
+  display_name: ChatGLM3-6B
+  model_id: THUDM/chatglm3-6b-base
+  trust_remote_code: true
+  hidden_size: 4096
+  layer_path: transformer.encoder.layers
+  selected_layers: [8, 16, 24]
+  dtype: float16
+
+llama2:
+  display_name: LLaMA2-7B
+  model_id: meta-llama/Llama-2-7b-hf
+  trust_remote_code: false
+  hidden_size: 4096
+  layer_path: model.layers
+  selected_layers: [8, 16, 24]
+  dtype: float16
